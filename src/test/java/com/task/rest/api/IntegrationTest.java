@@ -47,6 +47,24 @@ public class IntegrationTest {
     }
 
     @Test
+    public void itShouldReturnV1_Status404() throws Exception {
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/v1/{num}","1").contentType(MediaType.APPLICATION_JSON));
+        getRequestResult.andExpect(status().isNotFound()).andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void itShouldReturnV2_Status404() throws Exception {
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/v2/{num}","-10"));
+        getRequestResult.andExpect(status().isNotFound()).andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void itShouldReturnV2_Status404_1() throws Exception {
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/v2/{num}", "0").contentType(MediaType.APPLICATION_JSON));
+        getRequestResult.andExpect(status().isNotFound()).andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
     public void itShouldReturnXmlResponse_V1() throws Exception {
         ResultActions getRequestResult = mockMvc.perform(get("/primes/v1/{num}","13").accept(MediaType.APPLICATION_XML));
         getRequestResult.andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());

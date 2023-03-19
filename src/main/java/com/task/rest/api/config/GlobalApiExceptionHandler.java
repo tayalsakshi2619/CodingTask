@@ -1,6 +1,7 @@
 package com.task.rest.api.config;
 
 import com.task.rest.api.exception.InvalidInputException;
+import com.task.rest.api.exception.NoPrimeListException;
 import com.task.rest.api.model.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,4 +22,16 @@ public class GlobalApiExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ApiResponse.builder().errorMessage(exception.getMessage()).build());
     }
+
+    @ExceptionHandler(NoPrimeListException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<ApiResponse> handleEmptyList(
+            NoPrimeListException exception
+    ) {
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.builder().errorMessage(exception.getMessage()).build());
+    }
+
 }
