@@ -43,7 +43,7 @@ public class ApiController {
 
     //To enlist the values of cache : For Debugging
     @GetMapping(value = "/inspectCache/{cache_name}")
-    public Map<Object,Object> inspectCache(@PathVariable("cache_name") String cacheName) {
+    public void inspectCache(@PathVariable("cache_name") String cacheName) {
 
         CaffeineCache caffeineCache = (CaffeineCache) cacheManager.getCache(cacheName);
         Cache<Object, Object> nativeCache = Objects.requireNonNull(caffeineCache).getNativeCache();
