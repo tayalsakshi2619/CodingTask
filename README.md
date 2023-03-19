@@ -3,6 +3,7 @@ Rest-Api to list prime numbers
 
 The technical specs of the project are:
 Language: JAVA 17
+Build tool: Maven
 Framework: SpringBoot
 Container: Tomcat
 Caching Mechanism: Caffeine
