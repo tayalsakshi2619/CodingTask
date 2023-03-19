@@ -17,10 +17,11 @@ public class GlobalApiExceptionHandler {
     public ResponseEntity<ApiResponse> handleInvalidInput(
             InvalidInputException exception
     ) {
-
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(ApiResponse.builder().errorMessage(exception.getMessage()).build());
+                .body(ApiResponse.builder()
+                        .number(exception.getMessage().substring(exception.getMessage().lastIndexOf(':')+1))
+                        .errorMessage(exception.getMessage()).build());
     }
 
     @ExceptionHandler(NoPrimeListException.class)
@@ -28,10 +29,11 @@ public class GlobalApiExceptionHandler {
     public ResponseEntity<ApiResponse> handleEmptyList(
             NoPrimeListException exception
     ) {
-
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body(ApiResponse.builder().errorMessage(exception.getMessage()).build());
+                .body(ApiResponse.builder()
+                        .number(exception.getMessage().substring(exception.getMessage().lastIndexOf(':')+1))
+                        .errorMessage(exception.getMessage()).build());
     }
 
 }

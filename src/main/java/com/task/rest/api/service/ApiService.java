@@ -22,14 +22,14 @@ public class ApiService implements ServiceInterface {
          int n = Integer.parseInt(num);
          if(n<=1) {
              log.info("Prime Number list is empty");
-             throw new NoPrimeListException("No Prime Numbers found for your input");
+             throw new NoPrimeListException("No Prime Numbers found for your input :"+num);
          }
          else
              return IntStream.rangeClosed(2, n).boxed().toList().parallelStream().filter(this::isPrimeBetter).collect(Collectors.toList());
      }
      catch(NumberFormatException e){
          log.error("Encountered an exception while parsing number");
-         throw new InvalidInputException("Your input is invalid");
+         throw new InvalidInputException("Your input is invalid :"+num);
      }
     }
 
@@ -56,14 +56,14 @@ public class ApiService implements ServiceInterface {
             int n = Integer.parseInt(num);
             if(n<=1) {
                 log.info("Prime Number list is empty");
-                throw new NoPrimeListException("No Prime Numbers found for your input");
+                throw new NoPrimeListException("No Prime Numbers found for your input :"+num);
             }
             else
                 return IntStream.rangeClosed(2, n).boxed().toList().parallelStream().filter(this::isPrimeSlow).collect(Collectors.toList());
         }
         catch(NumberFormatException e){
             log.error("Encountered an exception while parsing number");
-            throw new InvalidInputException("Your input is invalid");
+            throw new InvalidInputException("Your input is invalid :"+num);
         }
     }
 

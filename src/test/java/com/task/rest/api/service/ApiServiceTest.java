@@ -26,7 +26,7 @@ public class ApiServiceTest {
     @InjectMocks
     private ApiService service;
 
-    private CacheManager cacheManager = new CaffeineCacheManager("cacheList");
+    private final CacheManager cacheManager = new CaffeineCacheManager("cacheList");
 
     @SneakyThrows
     @Test
@@ -45,14 +45,14 @@ public class ApiServiceTest {
     @Test
     public void itShouldThrowException_Null() {
         Exception thrown = Assertions.assertThrows(InvalidInputException.class, () -> service.findPrimeNumbersBetter(null),"Your input is invalid");
-        assertTrue(thrown.getMessage().contentEquals("Your input is invalid"));
+        assertTrue(thrown.getMessage().contentEquals("Your input is invalid :null"));
     }
 
 
     @Test
     public void itShouldThrowException_SpecialCharacters() {
         Exception thrown = Assertions.assertThrows(InvalidInputException.class, () -> service.findPrimeNumbersBetter("! 2@3"),"Your input is invalid");
-        assertTrue(thrown.getMessage().contentEquals("Your input is invalid"));
+        assertTrue(thrown.getMessage().contentEquals("Your input is invalid :! 2@3"));
     }
 
     @SneakyThrows
@@ -65,31 +65,31 @@ public class ApiServiceTest {
     @Test
     public void itShouldThrowException_SpecialCharacters_2() {
         Exception thrown = Assertions.assertThrows(InvalidInputException.class, () -> service.findPrimeNumbersSlow("   1"),"Your input is invalid");
-        assertTrue(thrown.getMessage().contentEquals("Your input is invalid"));
+        assertTrue(thrown.getMessage().contentEquals("Your input is invalid :   1"));
     }
 
     @Test
     public void itShouldThrowException_Zero() {
         Exception thrown = Assertions.assertThrows(NoPrimeListException.class, () -> service.findPrimeNumbersBetter("0"),"No Prime Numbers found for your input");
-        assertTrue(thrown.getMessage().contentEquals("No Prime Numbers found for your input"));
+        assertTrue(thrown.getMessage().contentEquals("No Prime Numbers found for your input :0"));
     }
 
     @Test
     public void itShouldThrowException_One() {
         Exception thrown = Assertions.assertThrows(NoPrimeListException.class, () -> service.findPrimeNumbersSlow("1"),"No Prime Numbers found for your input");
-        assertTrue(thrown.getMessage().contentEquals("No Prime Numbers found for your input"));
+        assertTrue(thrown.getMessage().contentEquals("No Prime Numbers found for your input :1"));
     }
 
     @Test
     public void itShouldThrowException_NegativeInput() {
         Exception thrown = Assertions.assertThrows(NoPrimeListException.class, () -> service.findPrimeNumbersBetter("-240"),"No Prime Numbers found for your input");
-        assertTrue(thrown.getMessage().contentEquals("No Prime Numbers found for your input"));
+        assertTrue(thrown.getMessage().contentEquals("No Prime Numbers found for your input :-240"));
     }
 
     @Test
     public void itShouldThrowException_DecimalInput() {
         Exception thrown = Assertions.assertThrows(InvalidInputException.class, () -> service.findPrimeNumbersBetter("1.2"),"Your input is invalid");
-        assertTrue(thrown.getMessage().contentEquals("Your input is invalid"));
+        assertTrue(thrown.getMessage().contentEquals("Your input is invalid :1.2"));
     }
 
     @SneakyThrows

@@ -31,14 +31,14 @@ public class ApiController {
     @GetMapping(value = "/v1/{num}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ApiResponse> calculateVersion1(@PathVariable String num) throws InvalidInputException, NoPrimeListException {
         List<Integer> listOfPrimes = service.findPrimeNumbersSlow(num);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().list(listOfPrimes).build());
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().number(num).list(listOfPrimes).build());
     }
 
     //To handle second algorithm
     @GetMapping(value = "/v2/{num}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ApiResponse> calculateVersion2(@PathVariable String num) throws InvalidInputException, NoPrimeListException {
         List<Integer> listOfPrimes = service.findPrimeNumbersBetter(num);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().list(listOfPrimes).build());
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().number(num).list(listOfPrimes).build());
     }
 
     //To enlist the values of cache : For Debugging
