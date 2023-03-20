@@ -14,8 +14,6 @@ import java.util.stream.IntStream;
 @Slf4j
 public class ApiService implements ServiceInterface {
 
-    //Time Complexity: O(sqrt(n))
-
     @Cacheable("cacheList")
     public List<Integer> findPrimeNumbersBetter(String num) throws InvalidInputException, NoPrimeListException {
      try{
@@ -48,7 +46,6 @@ public class ApiService implements ServiceInterface {
 
     }
 
-    //Time Complexity: O(sqrt(n))
 
     @Cacheable("cacheList")
     public List<Integer> findPrimeNumbersSlow(String num) throws InvalidInputException, NoPrimeListException {
@@ -59,7 +56,7 @@ public class ApiService implements ServiceInterface {
                 throw new NoPrimeListException("No Prime Numbers found for your input :"+num);
             }
             else
-                return IntStream.rangeClosed(2, n).boxed().toList().parallelStream().filter(this::isPrimeSlow).collect(Collectors.toList());
+                return IntStream.rangeClosed(2, n).boxed().toList().stream().filter(this::isPrimeSlow).collect(Collectors.toList());
         }
         catch(NumberFormatException e){
             log.error("Encountered an exception while parsing number");
