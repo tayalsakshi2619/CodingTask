@@ -12,6 +12,8 @@ Integration Tests: MockMvc<br>
 I have coded in such a way that this application supports 2 algorithms on 2 different endpoints:<br>
  1. /primes/v1/{num} : using the concept that a number is a prime number if it's not divisible by any number less than or equal to its square root.<br>
  2. /primes/v2/{num} : using the concept that a prime number, except 2 and 3 , can be represented as either 6k-1 or 6k+1 , where k>=1. I have used this logic in conjunction with concept of first algorithm. Hence, making it almost 3 times faster than the previous one.<br>
+ 
+ Note: I have implemented changes of supporting both algorithms on 1 endpoint as well.The code is avaiklable in develop branch<br>
 
 The time complexity of both algorithms is O(sqrt(n)) where n is the input. <br>
 
@@ -26,6 +28,7 @@ http://ec2-13-56-137-243.us-west-1.compute.amazonaws.com:8080/primes/v2/56  OR h
 Note: Above links aren't operating with https protocol and will throw site not secure error.<br>
 
 Alternatively, you can access the above project through postman as well.<br>
+
 
 
 
