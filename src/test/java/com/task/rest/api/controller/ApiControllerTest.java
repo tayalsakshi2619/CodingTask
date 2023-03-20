@@ -29,18 +29,9 @@ public class ApiControllerTest {
     @SneakyThrows
     @Test
     public void itShouldCalculateVersion1(){
-        when(service.findPrimeNumbersSlow("10")).thenReturn(Arrays.asList(2,3,5,7));
+        when(service.findPrimeNumbers("10")).thenReturn(Arrays.asList(2,3,5,7));
         ResponseEntity<ApiResponse> response = controller.calculateVersion1("10");
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(Arrays.asList(2,3,5,7), Objects.requireNonNull(response.getBody()).getList());
-    }
-
-    @SneakyThrows
-    @Test
-    public void itShouldCalculateVersion2() {
-        when(service.findPrimeNumbersBetter("13")).thenReturn(Arrays.asList(2,3,5,7,11,13));
-        ResponseEntity<ApiResponse> response = controller.calculateVersion2("13");
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals(Arrays.asList(2,3,5,7,11,13), Objects.requireNonNull(response.getBody()).getList());
     }
 }

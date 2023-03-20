@@ -27,17 +27,9 @@ public class ApiController {
     private final ServiceInterface service;
     private final CacheManager cacheManager;
 
-    //To handle first algorithm
-    @GetMapping(value = "/v1/{num}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/{num}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ApiResponse> calculateVersion1(@PathVariable String num) throws InvalidInputException, NoPrimeListException {
-        List<Integer> listOfPrimes = service.findPrimeNumbersSlow(num);
-        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().number(num).list(listOfPrimes).build());
-    }
-
-    //To handle second algorithm
-    @GetMapping(value = "/v2/{num}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ApiResponse> calculateVersion2(@PathVariable String num) throws InvalidInputException, NoPrimeListException {
-        List<Integer> listOfPrimes = service.findPrimeNumbersBetter(num);
+        List<Integer> listOfPrimes = service.findPrimeNumbers(num);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().number(num).list(listOfPrimes).build());
     }
 

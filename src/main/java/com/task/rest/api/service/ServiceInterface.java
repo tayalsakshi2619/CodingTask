@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface ServiceInterface {
 
-    List<Integer> findPrimeNumbersBetter(String num) throws InvalidInputException, NoPrimeListException;
-    List<Integer> findPrimeNumbersSlow(String num) throws InvalidInputException, NoPrimeListException;
+    List<Integer> findPrimeNumbers(String num) throws InvalidInputException, NoPrimeListException;
 }

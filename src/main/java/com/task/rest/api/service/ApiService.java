@@ -15,15 +15,20 @@ import java.util.stream.IntStream;
 public class ApiService implements ServiceInterface {
 
     @Cacheable("cacheList")
-    public List<Integer> findPrimeNumbersBetter(String num) throws InvalidInputException, NoPrimeListException {
+    public List<Integer> findPrimeNumbers(String num) throws InvalidInputException, NoPrimeListException {
      try{
          int n = Integer.parseInt(num);
          if(n<=1) {
              log.info("Prime Number list is empty");
              throw new NoPrimeListException("No Prime Numbers found for your input :"+num);
          }
-         else
-             return IntStream.rangeClosed(2, n).boxed().toList().parallelStream().filter(this::isPrimeBetter).collect(Collectors.toList());
+         else{
+             if(n<10000)
+                 return IntStream.rangeClosed(2, n).boxed().toList().parallelStream().filter(this::isPrimeSlow).collect(Collectors.toList());
+             else
+                 return IntStream.rangeClosed(2, n).boxed().toList().parallelStream().filter(this::isPrimeBetter).collect(Collectors.toList());
+         }
+
      }
      catch(NumberFormatException e){
          log.error("Encountered an exception while parsing number");
@@ -44,24 +49,6 @@ public class ApiService implements ServiceInterface {
             return true;
         }
 
-    }
-
-
-    @Cacheable("cacheList")
-    public List<Integer> findPrimeNumbersSlow(String num) throws InvalidInputException, NoPrimeListException {
-        try{
-            int n = Integer.parseInt(num);
-            if(n<=1) {
-                log.info("Prime Number list is empty");
-                throw new NoPrimeListException("No Prime Numbers found for your input :"+num);
-            }
-            else
-                return IntStream.rangeClosed(2, n).boxed().toList().stream().filter(this::isPrimeSlow).collect(Collectors.toList());
-        }
-        catch(NumberFormatException e){
-            log.error("Encountered an exception while parsing number");
-            throw new InvalidInputException("Your input is invalid :"+num);
-        }
     }
 
     private boolean isPrimeSlow(int n){
