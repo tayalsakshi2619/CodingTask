@@ -19,9 +19,13 @@ I have tried to implement concurrency by using ParallelStream() which makes use 
 
 The output of the rest endpoints can be accessed in the format of xml or json based on your choice. I have added this dependency to support xml return type: jackson-dataformat-xml<br>
 
-I have deployed the application to a Linux EC2 instance and configured it to run as a backend service. You can use this link to access the endpoint:<br>
+I have deployed the application to a Linux EC2 instance and configured it to run as a backend service. You can use following links to access the endpoints:<br>
 http://ec2-13-56-137-243.us-west-1.compute.amazonaws.com:8080/primes/v1/20  OR http://13.56.137.243:8080/primes/v1/20<br>
 http://ec2-13-56-137-243.us-west-1.compute.amazonaws.com:8080/primes/v2/56  OR http://13.56.137.243:8080/primes/v2/56<br>
 
 Note: Above links aren't operating with https protocol and will throw site not secure error.<br>
+
+Alternatively, you can access the above project through postman as well.<br>
+
+
 
