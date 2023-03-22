@@ -1,4 +1,4 @@
-Approach 1: Supporting multiple algorithm son the basis of versions in endpoints(URI versioning)
+Approach 1: Supporting multiple algorithms on the basis of versions in endpoints(URI versioning)
 
 CodingTask<br>
 Rest-Api to list prime numbers
