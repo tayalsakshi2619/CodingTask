@@ -1,3 +1,5 @@
+Approach 1: Supporting multiple algorithm son the basis of versions in endpoints(URI versioning)
+
 CodingTask<br>
 Rest-Api to list prime numbers
 
@@ -29,6 +31,8 @@ Note: Above links aren't operating with https protocol and will throw site not s
 
 Alternatively, you can access the above project through postman as well.<br>
 
+
+Note:I had another 2 ways in mind to support multiple algorithms, uri versioning and request parameters versioning. The code for request parameter versioning is available in develop branch. 
 
 
 
