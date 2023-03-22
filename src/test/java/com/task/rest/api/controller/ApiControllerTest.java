@@ -39,16 +39,16 @@ public class ApiControllerTest {
     @Test
     public void itShouldCalculateVersion2(){
         when(service.findPrimeNumbers_func2("10")).thenReturn(Arrays.asList(2,3,5,7));
-        ResponseEntity<ApiResponse> response = controller.calculateVersion2("10");
+        ResponseEntity<ApiResponse> response = controller.calculateVersion2(null,"10");
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(Arrays.asList(2,3,5,7), Objects.requireNonNull(response.getBody()).getList());
     }
 
     @SneakyThrows
     @Test
-    public void itShouldCalculateVersionDefault(){
+    public void itShouldCalculateVersion2_1(){
         when(service.findPrimeNumbers_func2("10")).thenReturn(Arrays.asList(2,3,5,7));
-        ResponseEntity<ApiResponse> response = controller.calculateVersion2("10");
+        ResponseEntity<ApiResponse> response = controller.calculateVersion2("version=2","10");
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(Arrays.asList(2,3,5,7), Objects.requireNonNull(response.getBody()).getList());
     }
