@@ -9,9 +9,9 @@ Caching Mechanism: Caffeine<br>
 Unit Tests: Junit and Mockito<br>
 Integration Tests: MockMvc<br>
 
-I have coded in such a way that this application supports 2 algorithms in 1 endpoint such that if number is less than 10000, it uses first algorithm otherwise second algorithm<br>
- 1. First algorithm : using the concept that a number is a prime number if it's not divisible by any number less than or equal to its square root.<br>
- 2. Second algorithm : using the concept that a prime number, except 2 and 3 , can be represented as either 6k-1 or 6k+1 , where k>=1. I have used this logic in conjunction with concept of first algorithm. Hence, making it almost 3 times faster than the previous one.<br>
+I have coded in such a way that this application supports 2 algorithms with 2 separate versions in endpoint parameters endpoint<br>
+ 1. /primes/v1/{num}?version=1: using the concept that a number is a prime number if it's not divisible by any number less than or equal to its square root.<br>
+ 2. /primes/v1/{num}?version=2: using the concept that a prime number, except 2 and 3 , can be represented as either 6k-1 or 6k+1 , where k>=1. I have used this logic in conjunction with concept of first algorithm. Hence, making it almost 3 times faster than the previous one.<br>
 
 The time complexity of both algorithms is O(sqrt(n)) where n is the input. <br>
 
@@ -21,7 +21,8 @@ The output of the rest endpoints can be accessed in the format of xml or json ba
 
 I have deployed the application to EC2 instance and also configured it to run in background: You can access the endpoints from following links:<br>
 
-http://ec2-13-56-137-243.us-west-1.compute.amazonaws.com:8081/primes/20 OR http://13.56.137.243:8081/primes/3
+http://ec2-13-56-137-243.us-west-1.compute.amazonaws.com:8081/primes/20?version=1 OR http://13.56.137.243:8081/primes/3?version=1
+http://ec2-13-56-137-243.us-west-1.compute.amazonaws.com:8081/primes/20?version=2 OR http://13.56.137.243:8081/primes/3?version=2
 
-Alternativey, you can use above links to access the endpoints through postman as well.
+Alternatively, you can use above links to access the endpoints through postman as well.
 

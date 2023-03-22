@@ -24,49 +24,49 @@ public class IntegrationTest {
 
     @Test
     public void itShouldReturnList_Status200_1() throws Exception {
-        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}","10"));
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}?version=1","10"));
         getRequestResult.andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void itShouldReturnList_Status200_2() throws Exception {
-        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}","10").contentType(MediaType.APPLICATION_JSON));
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}?version=2","10").contentType(MediaType.APPLICATION_JSON));
         getRequestResult.andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void itShouldReturn_Status400_1() throws Exception {
-        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}"," 12 3").contentType(MediaType.APPLICATION_JSON));
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}?version=1"," 12 3").contentType(MediaType.APPLICATION_JSON));
         getRequestResult.andExpect(status().isBadRequest()).andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void itShouldReturn_Status400_2() throws Exception {
-        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}","%76$"));
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}?version=2","%76$"));
         getRequestResult.andExpect(status().isBadRequest()).andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void itShouldReturn_Status404_1() throws Exception {
-        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}","1").contentType(MediaType.APPLICATION_JSON));
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}?version=1","1").contentType(MediaType.APPLICATION_JSON));
         getRequestResult.andExpect(status().isNotFound()).andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void itShouldReturn_Status404_2() throws Exception {
-        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}","-10"));
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}?version=2","-10"));
         getRequestResult.andExpect(status().isNotFound()).andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void itShouldReturn_Status404_3() throws Exception {
-        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}", "0").contentType(MediaType.APPLICATION_JSON));
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}?version=1", "0").contentType(MediaType.APPLICATION_JSON));
         getRequestResult.andExpect(status().isNotFound()).andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void itShouldReturnXmlResponse() throws Exception {
-        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}","13").accept(MediaType.APPLICATION_XML));
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}?version=1","13").accept(MediaType.APPLICATION_XML));
         getRequestResult.andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
     }
 
