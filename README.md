@@ -21,7 +21,7 @@ The output of the rest endpoints can be accessed in the format of xml or json ba
 
 I have deployed the application to EC2 instance and also configured it to run in background: You can access the endpoints from following links:<br>
 
-http://ec2-13-56-137-243.us-west-1.compute.amazonaws.com:8081/primes/20?version=1 OR http://13.56.137.243:8081/primes/3?version=1
+http://ec2-13-56-137-243.us-west-1.compute.amazonaws.com:8081/primes/20?version=1 or http://13.56.137.243:8081/primes/3?version=1
 http://ec2-13-56-137-243.us-west-1.compute.amazonaws.com:8081/primes/20?version=2 OR http://13.56.137.243:8081/primes/3?version=2
 
 Alternatively, you can use above links to access the endpoints through postman as well.
