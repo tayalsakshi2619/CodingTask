@@ -5,7 +5,7 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.task.rest.api.exception.InvalidInputException;
 import com.task.rest.api.exception.NoPrimeListException;
 import com.task.rest.api.model.ApiResponse;
-import com.task.rest.api.service.ServiceInterface;
+import com.task.rest.api.service.ApiService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.cache.CacheManager;
@@ -24,20 +24,20 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class ApiController {
 
-    private final ServiceInterface service;
+    private final ApiService service;
     private final CacheManager cacheManager;
 
     //To handle first algorithm
     @GetMapping(value = "/v1/{num}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ApiResponse> calculateVersion1(@PathVariable String num) throws InvalidInputException, NoPrimeListException {
-        List<Integer> listOfPrimes = service.findPrimeNumbersSlow(num);
+        List<Integer> listOfPrimes = service.findPrimeNumbers_func1(num);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().number(num).list(listOfPrimes).build());
     }
 
     //To handle second algorithm
     @GetMapping(value = "/v2/{num}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ApiResponse> calculateVersion2(@PathVariable String num) throws InvalidInputException, NoPrimeListException {
-        List<Integer> listOfPrimes = service.findPrimeNumbersBetter(num);
+        List<Integer> listOfPrimes = service.findPrimeNumbers_func2(num);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().number(num).list(listOfPrimes).build());
     }
 
