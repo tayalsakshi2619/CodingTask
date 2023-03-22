@@ -35,6 +35,12 @@ public class IntegrationTest {
     }
 
     @Test
+    public void itShouldReturnList_Status200_3() throws Exception {
+        ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}","10").contentType(MediaType.APPLICATION_JSON));
+        getRequestResult.andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
     public void itShouldReturn_Status400_1() throws Exception {
         ResultActions getRequestResult = mockMvc.perform(get("/primes/{num}?version=1"," 12 3").contentType(MediaType.APPLICATION_JSON));
         getRequestResult.andExpect(status().isBadRequest()).andDo(MockMvcResultHandlers.print());

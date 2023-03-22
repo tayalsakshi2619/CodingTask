@@ -39,6 +39,13 @@ public class ApiController {
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().number(num).list(listOfPrimes).build());
     }
 
+    //Using second algorithm by default
+    @GetMapping(value = "/{num}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<ApiResponse> calculateDefault(@PathVariable String num)throws InvalidInputException, NoPrimeListException {
+        List<Integer> listOfPrimes = service.findPrimeNumbers_func2(num);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.builder().number(num).list(listOfPrimes).build());
+    }
+
     //To enlist the values of cache : For Debugging
     @GetMapping(value = "/inspectCache/{cache_name}")
     public void inspectCache(@PathVariable("cache_name") String cacheName) {

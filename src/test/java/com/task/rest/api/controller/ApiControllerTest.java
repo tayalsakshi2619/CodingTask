@@ -43,4 +43,13 @@ public class ApiControllerTest {
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(Arrays.asList(2,3,5,7), Objects.requireNonNull(response.getBody()).getList());
     }
+
+    @SneakyThrows
+    @Test
+    public void itShouldCalculateVersionDefault(){
+        when(service.findPrimeNumbers_func2("10")).thenReturn(Arrays.asList(2,3,5,7));
+        ResponseEntity<ApiResponse> response = controller.calculateVersion2("10");
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(Arrays.asList(2,3,5,7), Objects.requireNonNull(response.getBody()).getList());
+    }
 }
